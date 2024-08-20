@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "My API",
+    "title": "Pokedex API",
     "version": "1.0.0",
     "description": "A simple API"
   },

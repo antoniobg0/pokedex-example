@@ -16,6 +16,7 @@ Backend of pokedex
 
 ### Swagger
 this project contains a minimal swagger configuration so user can check the available endpoints.
+you may require uuid to authorize request.
 
 path is
 `api/v1/api-docs`
