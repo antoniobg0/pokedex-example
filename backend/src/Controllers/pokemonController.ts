@@ -125,8 +125,6 @@ const addFavorite = async (req: PokeRequest, res: Response) => {
     }
 
     const [remotePokemon] = await searchPokemon(pokemonId);
-    console.log(remotePokemon)
-
     const pokemon = await prisma.pokemon.upsert({
       where: { id: remotePokemon.id },
       create: remotePokemon,
@@ -165,10 +163,16 @@ const removeFavorite = async (req: PokeRequest, res: Response) => {
       throw new PokeError("FavoriteError", "Pokemon is not favorite", 400);
     }
 
-    await prisma.favorite.delete({
+    const fav = await prisma.favorite.findFirst({
       where: {
         userId,
         pokemonId,
+      },
+    });
+
+    await prisma.favorite.delete({
+      where: {
+        id: fav?.id,
       },
     });
 
