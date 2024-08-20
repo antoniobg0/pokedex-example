@@ -12,3 +12,10 @@ Backend of pokedex
 3) npm run migrate
 4) npm run generate
 5) npm run seed (save the access uuid shown in terminal as it is required in frontend setup)
+
+
+### Swagger
+this project contains a minimal swagger configuration so user can check the available endpoints.
+
+path is
+`api/v1/api-docs`
