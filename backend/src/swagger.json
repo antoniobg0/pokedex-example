@@ -1,0 +1,247 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "My API",
+    "version": "1.0.0",
+    "description": "A simple API"
+  },
+  "paths": {
+    "/api/v1/pokemon": {
+      "get": {
+        "summary": "Get a list of pokemon",
+        "tags": ["Pokemon"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Pokemon amount by row"
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search by pokemon name or id (case sensitive)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of pokemon",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/GetPokemonResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pokemon not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/GetPokemonResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error searching pokemon",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/GetPokemonResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pokemon/{id}/favorite/add": {
+      "post": {
+        "summary": "Set favorite pokemon",
+        "tags": ["Pokemon"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Pokemon id to add to favorites"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pokemon added to favorites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/FavoritePokemonResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pokemon not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/FavoritePokemonResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error adding pokemon to favorites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/FavoritePokemonResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pokemon/{id}/favorite/remove": {
+      "post": {
+        "summary": "Remove pokemon from favorites",
+        "tags": ["Pokemon"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Pokemon id to remove from favorites"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pokemon removed from favorites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/FavoritePokemonResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pokemon not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/FavoritePokemonResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error removing pokemon to favorites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/FavoritePokemonResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "X-API-KEY",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "Pokemon": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "sprite": {
+            "type": "string"
+          },
+          "types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "GetPokemonResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Pokemon"
+                }
+              },
+              "offset": {
+                "type": "integer"
+              }
+            }
+          },
+          "error": {
+            "type": "string"
+          }
+        }
+      },
+      "FavoritePokemonResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "data": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+body {
+  font-family: "Press Start 2P", cursive;
+  background-color: #d7e2ba;
+  color: #3a5d1d;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://www.pngkit.com/png/full/11-116679_grass-clipart-pokemon-pokemon-grass.png");
+  background-size: cover;
+}
+.pokedex-container {
+  min-width: 660px;
+  background-color: #f0f8e2;
+  border: 5px solid #3a5d1d;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  text-align: center;
+}
+.pokedex-search {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.pokedex-search_input {
+  flex: 1;
+  padding: 10px 8px 10px 8px;
+  outline-color: #3a5d1d;
+  border: 3px solid #3a5d1d;
+  border-radius: 10px;
+}
+.pokedex-list {
+  height: calc(100vh - 300px);
+  overflow-y: auto;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pokedex-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #ffcc00;
+  text-shadow: 2px 2px #3a5d1d;
+}
+.pokemon-card {
+  position: relative;
+  display: flex;
+  background-color: #e2f0d9;
+  border: 3px solid #3a5d1d;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  align-items: center;
+}
+.pokemon-card .pokemon-sprite {
+  width: 96px;
+  height: 96px;
+  margin-right: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2px solid #3a5d1d;
+}
+.pokemon-info {
+  text-align: left;
+}
+.pokemon-info h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #3a5d1d;
+}
+.pokemon-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #5b8a2b;
+}
+.pokemon-type {
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 5px 5px 0 0;
+  border-radius: 5px;
+  background-color: #ffcc00;
+  color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.pokemon-favorite {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.pokedex-load-more {
+  cursor: pointer;
+}
